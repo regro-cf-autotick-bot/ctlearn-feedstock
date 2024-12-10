@@ -15,7 +15,7 @@ build:
     - build_irf = ctlearn.build_irf:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -27,7 +27,7 @@ requirements:
     - python >=3.10
     - dl1_data_handler >=0.12.0
     - tensorflow >=2.15.0,<2.16.0
-    - astropy
+    - astropy-base
     - matplotlib-base
     - numpy
     - pandas
