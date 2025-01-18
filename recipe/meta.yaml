@@ -1,3 +1,4 @@
+{% set python_min = '3.10' %}
 {% set name = "ctlearn" %}
 {% set version = "0.9.0" %}
 
@@ -6,7 +7,7 @@ package:
   version: {{ version }}
   
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ctlearn-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ctlearn-{{ version }}.tar.gz
   sha256: 1e0429e0ae20e35adeed9445d482944064798a8e1962bc97d77c520256672c39
   
 build:
@@ -15,16 +16,16 @@ build:
     - build_irf = ctlearn.build_irf:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.10
+    - python {{ python_min }}
     - setuptools >=65
     - setuptools-scm >=6.2
     - pip
   run:
-    - python >=3.10
+    - python >={{ python_min }}
     - dl1_data_handler >=0.12.0
     - tensorflow >=2.15.0,<2.16.0
     - astropy
@@ -48,6 +49,7 @@ test:
     - build_irf --help
   requires:
     - pip
+    - python {{ python_min }}
     
 about:
   home: https://github.com/ctlearn-project/ctlearn
